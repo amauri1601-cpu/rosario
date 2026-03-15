@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>O Santo Rosário de Nossa Senhora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & BASE ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--fundo);color:var(--texto);font-family:var(--fonte-b);line-height:1.7;min-height:100vh}
+
+/* ── VARIÁVEIS ── */
+:root{
+  --fundo:#faf7f2;--fundo2:#f2ede4;--texto:#2c1a0e;--texto-s:#7a6050;
+  --borda:#ddd0bc;--dourado:#b8943a;--sombra:0 4px 20px rgba(44,26,14,.10);--raio:16px;
+  --gz-p:#7a5c1e;--gz-am:#c8a84a;
+  --dl-p:#4a2570;--dl-am:#7a40b0;
+  --lm-p:#1a3f6f;--lm-am:#2563a8;
+  --gl-p:#8b1a1a;--gl-am:#c0392b;
+  --fonte-t:'Cinzel',serif;--fonte-b:'Lora',serif;
+}
+
+/* ── CABEÇALHO ── */
+.cab{text-align:center;padding:clamp(1.5rem,4vw,2.5rem) 1rem 1.5rem;
+  background:linear-gradient(180deg,rgba(184,148,58,.10),transparent);
+  border-bottom:1px solid var(--borda)}
+.cab::before{content:'✦  ✦  ✦';display:block;color:var(--dourado);
+  letter-spacing:.5rem;font-size:.8rem;margin-bottom:.6rem}
+.cab h1{font-family:var(--fonte-t);font-size:clamp(1.2rem,4vw,2.2rem);
+  font-weight:700;letter-spacing:.05em;line-height:1.2;margin-bottom:.4rem}
+.cab h1 span{color:var(--dourado)}
+.cab .sub{font-size:clamp(.78rem,2vw,.95rem);font-style:italic;color:var(--texto-s);
+  max-width:500px;margin:0 auto .8rem}
+
+/* ── SELETOR DE VOZ ── */
+.sel-voz{background:#fff;border:1px solid var(--borda);border-radius:12px;
+  padding:.9rem 1.2rem;max-width:420px;margin:0 auto;
+  box-shadow:0 2px 10px rgba(44,26,14,.06)}
+.sel-voz label{display:block;font-family:var(--fonte-t);font-size:.68rem;
+  font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--texto-s);margin-bottom:.6rem}
+.btns-voz{display:flex;gap:.5rem;justify-content:center}
+.btn-voz{flex:1;min-width:70px;padding:.45rem .5rem;border:2px solid var(--borda);
+  border-radius:9px;background:var(--fundo);color:var(--texto-s);
+  font-family:var(--fonte-t);font-size:.72rem;font-weight:600;
+  cursor:pointer;transition:all .2s;display:flex;flex-direction:column;
+  align-items:center;gap:.18rem;touch-action:manipulation}
+.btn-voz .ico{font-size:1.2rem}
+.btn-voz:hover,.btn-voz:active{border-color:var(--dourado);
+  background:rgba(184,148,58,.08);color:var(--texto)}
+.btn-voz.ativo{border-color:var(--dourado);background:rgba(184,148,58,.14);
+  color:var(--texto);box-shadow:0 0 0 3px rgba(184,148,58,.18)}
+.voz-lbl{margin-top:.45rem;font-size:.72rem;color:var(--dourado);
+  font-style:italic;text-align:center}
+.ind-audio{display:none;align-items:center;gap:.45rem;padding:.45rem .8rem;
+  background:rgba(184,148,58,.1);border:1px solid rgba(184,148,58,.25);
+  border-radius:18px;font-size:.72rem;color:var(--texto-s);margin-top:.45rem}
+.ind-audio.tocando{display:flex}
+.ondas{display:flex;gap:2px;align-items:center}
+.onda{width:3px;background:var(--dourado);border-radius:2px;
+  animation:onda .8s ease-in-out infinite}
+.onda:nth-child(1){height:6px;animation-delay:0s}
+.onda:nth-child(2){height:12px;animation-delay:.15s}
+.onda:nth-child(3){height:8px;animation-delay:.3s}
+.onda:nth-child(4){height:12px;animation-delay:.15s}
+.onda:nth-child(5){height:6px;animation-delay:0s}
+@keyframes onda{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+
+/* ── NAVEGAÇÃO ── */
+.nav{display:flex;gap:.35rem;justify-content:center;flex-wrap:wrap;
+  padding:1.2rem .8rem .5rem;max-width:640px;margin:0 auto}
+.btn-nav{padding:.4rem .85rem;border:2px solid;border-radius:28px;
+  font-family:var(--fonte-t);font-size:.7rem;font-weight:600;letter-spacing:.06em;
+  cursor:pointer;transition:all .2s;background:transparent;
+  touch-action:manipulation;white-space:nowrap}
+.n-gz{border-color:var(--gz-p);color:var(--gz-p)}
+.n-gz:hover,.n-gz.ativo{background:var(--gz-p);color:#fff}
+.n-dl{border-color:var(--dl-p);color:var(--dl-p)}
+.n-dl:hover,.n-dl.ativo{background:var(--dl-p);color:#fff}
+.n-lm{border-color:var(--lm-p);color:var(--lm-p)}
+.n-lm:hover,.n-lm.ativo{background:var(--lm-p);color:#fff}
+.n-gl{border-color:var(--gl-p);color:var(--gl-p)}
+.n-gl:hover,.n-gl.ativo{background:var(--gl-p);color:#fff}
+
+/* ── CONTEÚDO ── */
+.conteudo{max-width:860px;margin:0 auto;padding:.8rem clamp(.5rem,3vw,1rem) 3rem}
+
+/* ── SEÇÕES ── */
+.secao{display:none;animation:fu .3s ease}
+.secao.visivel{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CABEÇALHO SEÇÃO ── */
+.sh{text-align:center;padding:1.4rem 1rem 1.2rem;
+  border-radius:var(--raio) var(--raio) 0 0;color:#fff}
+.sh .emb{font-size:1.6rem;width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.18);display:flex;align-items:center;
+  justify-content:center;margin:0 auto .6rem;
+  border:1.5px solid rgba(255,255,255,.35)}
+.sh h2{font-family:var(--fonte-t);font-size:clamp(1.1rem,3.5vw,1.6rem);
+  font-weight:700;letter-spacing:.07em}
+.sh .dias{font-size:.78rem;opacity:.82;font-style:italic;margin-top:.2rem}
+.hd-gz{background:linear-gradient(135deg,#5a3d0a,#c8a84a)}
+.hd-dl{background:linear-gradient(135deg,#2d1248,#7a40b0)}
+.hd-lm{background:linear-gradient(135deg,#0e2444,#2563a8)}
+.hd-gl{background:linear-gradient(135deg,#5c0e0e,#c0392b)}
+
+/* ── CORPO SEÇÃO ── */
+.sc{background:#fff;border-radius:0 0 var(--raio) var(--raio);
+  box-shadow:var(--sombra);overflow:hidden;margin-bottom:1.5rem}
+
+/* ── LAYOUT: TERÇO + MISTÉRIOS ── */
+.sl{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:580px){.sl{grid-template-columns:1fr}}
+
+/* ── PAINEL TERÇO ── */
+.pt{padding:1.2rem .8rem 1rem;display:flex;flex-direction:column;
+  align-items:center;border-right:1px solid var(--borda)}
+@media(max-width:580px){.pt{border-right:none;border-bottom:1px solid var(--borda)}}
+.pt h3{font-family:var(--fonte-t);font-size:.66rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--texto-s);
+  margin-bottom:.7rem}
+/* SVG do terço — responsivo via viewBox + width:100% */
+.pt svg{width:100%;height:auto;touch-action:manipulation}
+.btn-r{margin-top:.7rem;padding:.38rem 1rem;border:1.5px solid var(--borda);
+  border-radius:18px;background:transparent;color:var(--texto-s);
+  font-family:var(--fonte-t);font-size:.68rem;font-weight:600;
+  letter-spacing:.08em;cursor:pointer;transition:all .2s;
+  touch-action:manipulation}
+.btn-r:hover,.btn-r:active{border-color:var(--dourado);color:var(--texto);
+  background:rgba(184,148,58,.08)}
+
+/* ── PAINEL MISTÉRIOS ── */
+.pm{padding:1.2rem 1rem;overflow-y:auto;
+  max-height:clamp(260px,50vw,440px)}
+.pm h3{font-family:var(--fonte-t);font-size:.66rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--texto-s);
+  margin-bottom:.8rem}
+.lm-list{list-style:none}
+.im{display:flex;gap:.6rem;align-items:flex-start;
+  padding:.6rem .4rem;border-bottom:1px solid var(--borda);
+  cursor:pointer;transition:background .18s;border-radius:7px;
+  touch-action:manipulation}
+.im:last-child{border-bottom:none}
+.im:hover,.im:active{background:rgba(184,148,58,.05)}
+.im.ativo{background:rgba(184,148,58,.09)}
+.nm{flex-shrink:0;width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fonte-t);font-size:.72rem;font-weight:700;
+  color:#fff;margin-top:2px}
+.nm-gz{background:var(--gz-p)}.nm-dl{background:var(--dl-p)}
+.nm-lm{background:var(--lm-p)}.nm-gl{background:var(--gl-p)}
+.mi h4{font-family:var(--fonte-t);font-size:clamp(.78rem,2vw,.84rem);
+  font-weight:600;line-height:1.3;margin-bottom:.14rem}
+.mi .rf{font-size:clamp(.68rem,1.8vw,.72rem);font-style:italic;color:var(--texto-s)}
+
+/* ── PAINEL ORAÇÕES ── */
+.po{padding:1.2rem;background:linear-gradient(to bottom,#fffdf8,var(--fundo));
+  border-top:1px solid var(--borda)}
+.po h3{font-family:var(--fonte-t);font-size:.66rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--texto-s);
+  margin-bottom:.8rem}
+.ot{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.8rem}
+.bt{padding:.28rem .65rem;border:1.5px solid var(--borda);border-radius:18px;
+  background:transparent;color:var(--texto-s);font-family:var(--fonte-t);
+  font-size:clamp(.62rem,1.8vw,.68rem);font-weight:600;
+  cursor:pointer;transition:all .18s;touch-action:manipulation}
+.bt:hover,.bt:active,.bt.ativo{border-color:var(--dourado);
+  background:rgba(184,148,58,.1);color:var(--texto)}
+.to{display:none;background:#fff;border:1px solid var(--borda);
+  border-radius:11px;padding:1rem 1.2rem}
+.to.visivel{display:block;animation:fu .25s ease}
+.to h4{font-family:var(--fonte-t);font-size:.84rem;font-weight:700;
+  color:var(--dourado);margin-bottom:.6rem;
+  padding-bottom:.4rem;border-bottom:1px solid var(--borda)}
+.to p{font-size:clamp(.82rem,2vw,.88rem);line-height:1.82;color:var(--texto)}
+.to p+p{margin-top:.55rem}
+
+/* ── SEQUÊNCIA ── */
+.seq{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);
+  padding:1.2rem;margin-bottom:1.5rem;box-shadow:var(--sombra)}
+.seq h3{font-family:var(--fonte-t);font-size:.72rem;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--dourado);
+  margin-bottom:.8rem}
+.passos{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.passo{background:var(--fundo2);border:1px solid var(--borda);
+  border-radius:7px;padding:.22rem .55rem;
+  font-size:clamp(.65rem,1.8vw,.72rem);color:var(--texto-s)}
+.seta{color:var(--dourado);font-size:.72rem}
+
+/* ── SALVE ── */
+.salve{background:linear-gradient(135deg,#0e2030,#1a3a5c);
+  border-radius:var(--raio);padding:1.5rem 1.2rem;color:#d0e4f8;
+  box-shadow:var(--sombra);margin-bottom:1.5rem}
+.salve h3{font-family:var(--fonte-t);font-size:clamp(.95rem,3vw,1.05rem);
+  font-weight:700;color:#e8c96a;margin-bottom:.6rem}
+.salve p{font-size:clamp(.8rem,2vw,.86rem);line-height:1.8;
+  font-style:italic;opacity:.92}
+.salve p+p{margin-top:.6rem}
+.salve .ot-titulo{font-family:var(--fonte-t);font-size:.65rem;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:#e8c96a;opacity:.75;
+  margin-top:1.2rem;margin-bottom:.3rem}
+
+/* ── RODAPÉ ── */
+.rodape{text-align:center;padding:1.5rem .8rem;border-top:1px solid var(--borda);
+  color:var(--texto-s);font-size:.73rem;font-style:italic}
+.rodape::before{content:'✦  ✦  ✦';display:block;color:var(--dourado);
+  letter-spacing:.45rem;margin-bottom:.6rem}
+
+/* ── MOBILE ESPECÍFICO ── */
+@media(max-width:400px){
+  .nav{gap:.25rem}
+  .btn-nav{padding:.35rem .65rem;font-size:.65rem}
+  .pm{max-height:220px}
+}
+@media(min-width:860px){
+  .sl{grid-template-columns:1fr 1fr}
+  .pm{max-height:480px}
+}
+</style>
+</head>
+<body>
+
+<header class="cab">
+  <h1>O Santo Rosário de<br><span>Nossa Senhora</span></h1>
+  <p class="sub">Reze contemplando os mistérios da vida de Jesus e Maria</p>
+  <div class="sel-voz">
+    <label>Escolha a voz para as orações</label>
+    <div class="btns-voz">
+      <button class="btn-voz ativo" onclick="selecionarVoz('homem',this)"><span class="ico">👨</span>Homem</button>
+      <button class="btn-voz" onclick="selecionarVoz('mulher',this)"><span class="ico">👩</span>Mulher</button>
+    </div>
+    <div class="voz-lbl" id="voz-lbl">🔊 Voz: Homem</div>
+    <div class="ind-audio" id="ind-audio">
+      <div class="ondas"><div class="onda"></div><div class="onda"></div><div class="onda"></div><div class="onda"></div><div class="onda"></div></div>
+      <span id="lbl-tocando">Tocando…</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <button class="btn-nav n-gz ativo" onclick="mostrarSecao('gz',this)">🌾 Gozosos</button>
+  <button class="btn-nav n-dl" onclick="mostrarSecao('dl',this)">✝ Dolorosos</button>
+  <button class="btn-nav n-lm" onclick="mostrarSecao('lm',this)">☀ Luminosos</button>
+  <button class="btn-nav n-gl" onclick="mostrarSecao('gl',this)">👑 Gloriosos</button>
+</nav>
+
+<main class="conteudo">
+
+<div class="seq">
+  <h3>📿 Sequência do Rosário</h3>
+  <div class="passos">
+    <span class="passo">Sinal da Cruz</span><span class="seta">›</span>
+    <span class="passo">Credo</span><span class="seta">›</span>
+    <span class="passo">3 Ave-Marias</span><span class="seta">›</span>
+    <span class="passo">Glória</span><span class="seta">›</span>
+    <span class="passo">Anunciar Mistério</span><span class="seta">›</span>
+    <span class="passo">Pai-Nosso</span><span class="seta">›</span>
+    <span class="passo">10 Ave-Marias</span><span class="seta">›</span>
+    <span class="passo">Glória + Ó meu Jesus</span><span class="seta">›</span>
+    <span class="passo">× 5 mistérios</span><span class="seta">›</span>
+    <span class="passo">Salve Rainha</span>
+  </div>
+</div>
+
+<!-- ═══ GOZOSOS — Branco/Dourado ═══ -->
+<section class="secao visivel" id="sec-gz">
+  <div class="sh hd-gz"><div class="emb">🌾</div><h2>Mistérios Gozosos</h2><p class="dias">Segunda-feira e Sábado</p></div>
+  <div class="sc">
+    <div class="sl">
+      <div class="pt">
+        <h3>📿 Terço</h3>
+        <div class="tw">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 831" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block"><defs>
+  <radialGradient id="gAM_gz" cx="35%" cy="28%" r="65%">
+    <stop offset="0%"   stop-color="#fff8ec"/>
+    <stop offset="30%"  stop-color="#e8d8a8"/>
+    <stop offset="65%"  stop-color="#c8b080"/>
+    <stop offset="100%" stop-color="#6a4818"/>
+  </radialGradient>
+  <radialGradient id="gPN_gz" cx="32%" cy="25%" r="68%">
+    <stop offset="0%"   stop-color="#fff8ec"/>
+    <stop offset="25%"  stop-color="#e8d8a8"/>
+    <stop offset="60%"  stop-color="#b09050"/>
+    <stop offset="100%" stop-color="#6a4818"/>
+  </radialGradient>
+  <linearGradient id="gFio_gz" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%"   stop-color="#c8a030" stop-opacity="0.7"/>
+    <stop offset="50%"  stop-color="#f8ee98"   stop-opacity="1"/>
+    <stop offset="100%" stop-color="#c8a030" stop-opacity="0.7"/>
+  </linearGradient>
+  <linearGradient id="gCruz_gz" x1="10%" y1="0%" x2="90%" y2="100%">
+    <stop offset="0%"   stop-color="#f8e898"/>
+    <stop offset="40%"  stop-color="#d0a030"/>
+    <stop offset="100%" stop-color="#7a5010"/>
+  </linearGradient>
+  <radialGradient id="gGlow_gz" cx="50%" cy="50%" r="50%">
+    <stop offset="50%"  stop-color="#fff8ec" stop-opacity="0"/>
+    <stop offset="82%"  stop-color="#e8d8a8"  stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#fff8ec" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="fS_gz" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0.5" dy="1.5" stdDeviation="2" flood-color="#6a4818" flood-opacity="0.4"/>
+  </filter>
+  <filter id="fP_gz" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#e8d8a8" flood-opacity="0.55"/>
+  </filter>
+</defs><circle cx="250" cy="250" r="220" fill="url(#gGlow_gz)"/><circle cx="250" cy="250" r="205" fill="none" stroke="url(#gFio_gz)" stroke-width="2.5"/><line x1="250" y1="455.0" x2="250" y2="479.0" stroke="url(#gFio_gz)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="505.0" x2="250" y2="529.0" stroke="url(#gFio_gz)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="555.0" x2="250" y2="579.0" stroke="url(#gFio_gz)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="593.0" x2="250" y2="617.0" stroke="url(#gFio_gz)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="631.0" x2="250" y2="655.0" stroke="url(#gFio_gz)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="669.0" x2="250" y2="693.0" stroke="url(#gFio_gz)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="719.0" x2="250" y2="753.0" stroke="url(#gFio_gz)" stroke-width="2.5" stroke-linecap="round"/><g class="conta" data-terco="gz" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250.0" cy="455.0" r="13" fill="url(#gPN_gz)" filter="url(#fP_gz)"/><ellipse cx="246.4" cy="450.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250.0" y="458.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.85">1</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="226.6" cy="453.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="224.7" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="226.6" y="455.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="203.6" cy="449.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="201.6" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="203.6" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="181.1" cy="443.1" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="179.1" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="181.1" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="159.5" cy="434.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="157.6" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="159.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="139.2" cy="422.5" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="137.2" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="139.2" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="120.2" cy="408.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="118.3" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="120.2" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="103.0" cy="392.9" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="101.0" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="103.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="87.7" cy="375.2" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="85.7" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="87.7" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="74.4" cy="355.9" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="72.5" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="74.4" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="63.5" cy="335.2" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="61.6" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="63.5" y="337.2" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gz" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="55.0" cy="313.3" r="13" fill="url(#gPN_gz)" filter="url(#fP_gz)"/><ellipse cx="51.4" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="55.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.85">2</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="49.1" cy="290.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="47.1" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="49.1" y="292.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.8" cy="267.5" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="43.8" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.8" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.1" cy="244.1" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="43.1" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.1" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="47.1" cy="220.8" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="45.1" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="47.1" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="51.7" cy="197.9" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="49.8" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="51.7" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="59.0" cy="175.6" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="57.0" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="59.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="68.7" cy="154.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="66.7" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="68.7" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="80.8" cy="134.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="78.8" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="80.8" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="95.1" cy="115.8" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="93.1" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="95.1" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="111.4" cy="99.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="109.4" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="111.4" y="101.0" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gz" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="129.5" cy="84.2" r="13" fill="url(#gPN_gz)" filter="url(#fP_gz)"/><ellipse cx="125.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="129.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.85">3</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="149.2" cy="71.5" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="147.2" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="149.2" y="73.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="170.2" cy="61.2" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="168.2" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="170.2" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="192.2" cy="53.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="190.3" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="192.2" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="215.0" cy="48.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="213.1" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="215.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="238.3" cy="45.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="236.3" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="238.3" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="261.7" cy="45.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="259.7" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="261.7" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="285.0" cy="48.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="283.0" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="285.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="307.8" cy="53.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="305.8" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="307.8" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="329.8" cy="61.2" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="327.8" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="329.8" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="350.8" cy="71.5" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="348.8" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="350.8" y="73.5" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gz" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="370.5" cy="84.2" r="13" fill="url(#gPN_gz)" filter="url(#fP_gz)"/><ellipse cx="366.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="370.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.85">4</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="388.6" cy="99.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="386.7" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="388.6" y="101.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="404.9" cy="115.8" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="403.0" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="404.9" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="419.2" cy="134.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="417.3" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="419.2" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="431.3" cy="154.3" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="429.3" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="431.3" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="441.0" cy="175.6" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="439.1" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="441.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="448.3" cy="197.9" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="446.3" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="448.3" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="452.9" cy="220.8" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="451.0" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="452.9" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.9" cy="244.1" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="453.0" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.9" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.2" cy="267.5" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="452.3" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.2" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="450.9" cy="290.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="449.0" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="450.9" y="292.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gz" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="445.0" cy="313.3" r="13" fill="url(#gPN_gz)" filter="url(#fP_gz)"/><ellipse cx="441.3" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="445.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.85">5</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="436.5" cy="335.2" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="434.5" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="436.5" y="337.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="425.6" cy="355.9" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="423.6" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="425.6" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="412.3" cy="375.2" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="410.4" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="412.3" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="397.0" cy="392.9" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="395.1" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="397.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="379.8" cy="408.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="377.8" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="379.8" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="360.8" cy="422.5" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="358.9" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="360.8" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="340.5" cy="434.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="338.5" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="340.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="318.9" cy="443.1" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="316.9" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="318.9" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="296.4" cy="449.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="294.5" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="296.4" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="273.4" cy="453.7" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="271.4" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="273.4" y="455.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gz" data-oracao="salve-rainha" onclick="clicarConta(this)" style="cursor:pointer"><polygon points="250.0,476.0 253.1,484.6 261.3,480.7 257.4,488.9 266.0,492.0 257.4,495.1 261.3,503.3 253.1,499.4 250.0,508.0 246.9,499.4 238.7,503.3 242.6,495.1 234.0,492.0 242.6,488.9 238.7,480.7 246.9,484.6" fill="url(#gPN_gz)" filter="url(#fP_gz)" stroke="#c8a030" stroke-width="0.8"/><ellipse cx="247.0" cy="488.0" rx="4" ry="2.2" fill="white" opacity="0.48"/><text x="250" y="494.8" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.88">SR</text></g>
+<g class="conta" data-terco="gz" data-oracao="gloria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="542.0" r="13" fill="url(#gPN_gz)" filter="url(#fP_gz)"/><ellipse cx="246.4" cy="537.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="545.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.88">GL</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="586.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="248.0" cy="583.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="588.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="624.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="248.0" cy="621.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="626.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="gz" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="662.0" r="7" fill="url(#gAM_gz)" filter="url(#fS_gz)"/><ellipse cx="248.0" cy="659.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="664.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="gz" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="706.0" r="13" fill="url(#gPN_gz)" filter="url(#fP_gz)"/><ellipse cx="246.4" cy="701.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="709.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#6a4818" opacity="0.88">PN</text></g>
+<g class="conta-cruz" data-terco="gz" data-oracao="cruz" onclick="clicarCruz(this)" style="cursor:pointer" filter="url(#fS_gz)"><line x1="250" y1="753.0" x2="250" y2="809.0" stroke="url(#gCruz_gz)" stroke-width="8" stroke-linecap="round"/><line x1="226.0" y1="770.0" x2="274.0" y2="770.0" stroke="url(#gCruz_gz)" stroke-width="8" stroke-linecap="round"/><circle cx="250"       cy="753.0"     r="5"   fill="url(#gCruz_gz)"/><circle cx="250"       cy="809.0"  r="5"   fill="url(#gCruz_gz)"/><circle cx="226.0" cy="770.0" r="5"   fill="url(#gCruz_gz)"/><circle cx="274.0" cy="770.0" r="5"   fill="url(#gCruz_gz)"/><ellipse cx="250" cy="780.0" rx="5" ry="11" fill="#c8a030" opacity="0.28"/></g><style>[data-terco="gz"].conta circle,[data-terco="gz"].conta polygon{transition:opacity .3s}[data-terco="gz"].conta:hover circle,[data-terco="gz"].conta:hover polygon{opacity:.72}[data-terco="gz"].conta.rezada circle,[data-terco="gz"].conta.rezada polygon{opacity:.16!important}[data-terco="gz"].conta.rezada ellipse{opacity:.04!important}[data-terco="gz"].conta.rezada text{opacity:.1!important}</style></svg>
+        </div>
+        
+        <button class="btn-r" onclick="reiniciar('gz')">↺ Reiniciar</button>
+      </div>
+      <div class="pm">
+        <h3>🌾 Os Cinco Mistérios</h3>
+        <ul class="lm-list">
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gz">1</span><div class="mi"><h4>A Anunciação do Anjo a Maria</h4><p class="rf">Lucas 1,26-38 — O anjo Gabriel anuncia a Maria que conceberá o Filho de Deus</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gz">2</span><div class="mi"><h4>A Visitação de Maria a Isabel</h4><p class="rf">Lucas 1,39-56 — Maria visita Isabel; João Batista exulta no seio materno</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gz">3</span><div class="mi"><h4>O Nascimento de Jesus em Belém</h4><p class="rf">Lucas 2,1-15 — Jesus nasce em Belém; os anjos anunciam a Boa Nova</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gz">4</span><div class="mi"><h4>A Apresentação de Jesus no Templo</h4><p class="rf">Lucas 2,22-35 — Simeão profetiza sobre o Menino Jesus</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gz">5</span><div class="mi"><h4>O Encontro de Jesus no Templo</h4><p class="rf">Lucas 2,42-52 — Jesus de doze anos é encontrado entre os doutores</p></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="po">
+      <h3>📖 Orações</h3>
+      <div class="ot">
+        <button class="bt ativo" onclick="mostrarOracao(this,'gz-sc')">Sinal da Cruz</button>
+        <button class="bt" onclick="mostrarOracao(this,'gz-cr')">Credo</button>
+        <button class="bt" onclick="mostrarOracao(this,'gz-pn')">Pai-Nosso</button>
+        <button class="bt" onclick="mostrarOracao(this,'gz-am')">Ave-Maria</button>
+        <button class="bt" onclick="mostrarOracao(this,'gz-gl')">Glória</button>
+        <button class="bt" onclick="mostrarOracao(this,'gz-mj')">Ó meu Jesus</button>
+      </div>
+      <div class="to visivel" id="gz-sc"><h4>✝ Sinal da Cruz</h4><p>Em nome do Pai, e do Filho, e do Espírito Santo. Amém.</p></div>
+      <div class="to" id="gz-cr"><h4>✝ Credo Apostólico</h4><p>Creio em Deus Pai todo-poderoso, Criador do céu e da terra; e em Jesus Cristo, seu único Filho, Nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos; foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos céus; está sentado à direita de Deus Pai todo-poderoso; donde há de vir a julgar os vivos e os mortos.</p><p>Creio no Espírito Santo; na santa Igreja Católica; na comunhão dos santos; na remissão dos pecados; na ressurreição da carne; na vida eterna. Amém.</p></div>
+      <div class="to" id="gz-pn"><h4>✝ Pai-Nosso</h4><p>Pai-Nosso que estais nos céus, santificado seja o vosso nome, venha a nós o vosso reino, seja feita a vossa vontade, assim na terra como no céu.</p><p>O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.</p></div>
+      <div class="to" id="gz-am"><h4>✝ Ave-Maria</h4><p>Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.</p><p>Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém.</p></div>
+      <div class="to" id="gz-gl"><h4>✝ Glória ao Pai</h4><p>Glória ao Pai, ao Filho e ao Espírito Santo, assim como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.</p></div>
+      <div class="to" id="gz-mj"><h4>✝ Ó meu Jesus</h4><p>Ó meu Jesus, perdoai-nos e livrai-nos do fogo do Inferno; levai as almas todas para o Céu, especialmente as que mais precisarem da vossa misericórdia. Amém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOLOROSOS — Roxo ═══ -->
+<section class="secao" id="sec-dl">
+  <div class="sh hd-dl"><div class="emb">✝</div><h2>Mistérios Dolorosos</h2><p class="dias">Terça-feira e Sexta-feira</p></div>
+  <div class="sc">
+    <div class="sl">
+      <div class="pt">
+        <h3>📿 Terço</h3>
+        <div class="tw">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 831" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block"><defs>
+  <radialGradient id="gAM_dl" cx="35%" cy="28%" r="65%">
+    <stop offset="0%"   stop-color="#ede0fc"/>
+    <stop offset="30%"  stop-color="#b090d8"/>
+    <stop offset="65%"  stop-color="#7040a8"/>
+    <stop offset="100%" stop-color="#2a1045"/>
+  </radialGradient>
+  <radialGradient id="gPN_dl" cx="32%" cy="25%" r="68%">
+    <stop offset="0%"   stop-color="#ede0fc"/>
+    <stop offset="25%"  stop-color="#b090d8"/>
+    <stop offset="60%"  stop-color="#503080"/>
+    <stop offset="100%" stop-color="#2a1045"/>
+  </radialGradient>
+  <linearGradient id="gFio_dl" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%"   stop-color="#c8a030" stop-opacity="0.7"/>
+    <stop offset="50%"  stop-color="#f8ee98"   stop-opacity="1"/>
+    <stop offset="100%" stop-color="#c8a030" stop-opacity="0.7"/>
+  </linearGradient>
+  <linearGradient id="gCruz_dl" x1="10%" y1="0%" x2="90%" y2="100%">
+    <stop offset="0%"   stop-color="#f8e898"/>
+    <stop offset="40%"  stop-color="#d0a030"/>
+    <stop offset="100%" stop-color="#7a5010"/>
+  </linearGradient>
+  <radialGradient id="gGlow_dl" cx="50%" cy="50%" r="50%">
+    <stop offset="50%"  stop-color="#ede0fc" stop-opacity="0"/>
+    <stop offset="82%"  stop-color="#b090d8"  stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#ede0fc" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="fS_dl" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0.5" dy="1.5" stdDeviation="2" flood-color="#2a1045" flood-opacity="0.4"/>
+  </filter>
+  <filter id="fP_dl" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#b090d8" flood-opacity="0.55"/>
+  </filter>
+</defs><circle cx="250" cy="250" r="220" fill="url(#gGlow_dl)"/><circle cx="250" cy="250" r="205" fill="none" stroke="url(#gFio_dl)" stroke-width="2.5"/><line x1="250" y1="455.0" x2="250" y2="479.0" stroke="url(#gFio_dl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="505.0" x2="250" y2="529.0" stroke="url(#gFio_dl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="555.0" x2="250" y2="579.0" stroke="url(#gFio_dl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="593.0" x2="250" y2="617.0" stroke="url(#gFio_dl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="631.0" x2="250" y2="655.0" stroke="url(#gFio_dl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="669.0" x2="250" y2="693.0" stroke="url(#gFio_dl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="719.0" x2="250" y2="753.0" stroke="url(#gFio_dl)" stroke-width="2.5" stroke-linecap="round"/><g class="conta" data-terco="dl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250.0" cy="455.0" r="13" fill="url(#gPN_dl)" filter="url(#fP_dl)"/><ellipse cx="246.4" cy="450.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250.0" y="458.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.85">1</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="226.6" cy="453.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="224.7" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="226.6" y="455.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="203.6" cy="449.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="201.6" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="203.6" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="181.1" cy="443.1" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="179.1" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="181.1" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="159.5" cy="434.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="157.6" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="159.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="139.2" cy="422.5" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="137.2" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="139.2" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="120.2" cy="408.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="118.3" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="120.2" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="103.0" cy="392.9" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="101.0" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="103.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="87.7" cy="375.2" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="85.7" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="87.7" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="74.4" cy="355.9" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="72.5" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="74.4" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="63.5" cy="335.2" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="61.6" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="63.5" y="337.2" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="dl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="55.0" cy="313.3" r="13" fill="url(#gPN_dl)" filter="url(#fP_dl)"/><ellipse cx="51.4" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="55.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.85">2</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="49.1" cy="290.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="47.1" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="49.1" y="292.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.8" cy="267.5" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="43.8" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.8" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.1" cy="244.1" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="43.1" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.1" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="47.1" cy="220.8" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="45.1" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="47.1" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="51.7" cy="197.9" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="49.8" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="51.7" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="59.0" cy="175.6" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="57.0" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="59.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="68.7" cy="154.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="66.7" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="68.7" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="80.8" cy="134.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="78.8" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="80.8" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="95.1" cy="115.8" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="93.1" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="95.1" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="111.4" cy="99.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="109.4" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="111.4" y="101.0" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="dl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="129.5" cy="84.2" r="13" fill="url(#gPN_dl)" filter="url(#fP_dl)"/><ellipse cx="125.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="129.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.85">3</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="149.2" cy="71.5" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="147.2" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="149.2" y="73.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="170.2" cy="61.2" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="168.2" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="170.2" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="192.2" cy="53.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="190.3" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="192.2" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="215.0" cy="48.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="213.1" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="215.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="238.3" cy="45.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="236.3" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="238.3" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="261.7" cy="45.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="259.7" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="261.7" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="285.0" cy="48.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="283.0" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="285.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="307.8" cy="53.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="305.8" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="307.8" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="329.8" cy="61.2" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="327.8" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="329.8" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="350.8" cy="71.5" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="348.8" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="350.8" y="73.5" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="dl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="370.5" cy="84.2" r="13" fill="url(#gPN_dl)" filter="url(#fP_dl)"/><ellipse cx="366.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="370.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.85">4</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="388.6" cy="99.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="386.7" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="388.6" y="101.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="404.9" cy="115.8" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="403.0" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="404.9" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="419.2" cy="134.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="417.3" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="419.2" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="431.3" cy="154.3" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="429.3" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="431.3" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="441.0" cy="175.6" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="439.1" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="441.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="448.3" cy="197.9" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="446.3" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="448.3" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="452.9" cy="220.8" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="451.0" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="452.9" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.9" cy="244.1" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="453.0" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.9" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.2" cy="267.5" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="452.3" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.2" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="450.9" cy="290.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="449.0" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="450.9" y="292.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="dl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="445.0" cy="313.3" r="13" fill="url(#gPN_dl)" filter="url(#fP_dl)"/><ellipse cx="441.3" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="445.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.85">5</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="436.5" cy="335.2" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="434.5" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="436.5" y="337.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="425.6" cy="355.9" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="423.6" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="425.6" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="412.3" cy="375.2" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="410.4" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="412.3" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="397.0" cy="392.9" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="395.1" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="397.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="379.8" cy="408.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="377.8" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="379.8" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="360.8" cy="422.5" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="358.9" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="360.8" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="340.5" cy="434.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="338.5" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="340.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="318.9" cy="443.1" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="316.9" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="318.9" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="296.4" cy="449.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="294.5" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="296.4" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="273.4" cy="453.7" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="271.4" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="273.4" y="455.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="dl" data-oracao="salve-rainha" onclick="clicarConta(this)" style="cursor:pointer"><polygon points="250.0,476.0 253.1,484.6 261.3,480.7 257.4,488.9 266.0,492.0 257.4,495.1 261.3,503.3 253.1,499.4 250.0,508.0 246.9,499.4 238.7,503.3 242.6,495.1 234.0,492.0 242.6,488.9 238.7,480.7 246.9,484.6" fill="url(#gPN_dl)" filter="url(#fP_dl)" stroke="#c8a030" stroke-width="0.8"/><ellipse cx="247.0" cy="488.0" rx="4" ry="2.2" fill="white" opacity="0.48"/><text x="250" y="494.8" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.88">SR</text></g>
+<g class="conta" data-terco="dl" data-oracao="gloria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="542.0" r="13" fill="url(#gPN_dl)" filter="url(#fP_dl)"/><ellipse cx="246.4" cy="537.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="545.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.88">GL</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="586.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="248.0" cy="583.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="588.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="624.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="248.0" cy="621.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="626.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="dl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="662.0" r="7" fill="url(#gAM_dl)" filter="url(#fS_dl)"/><ellipse cx="248.0" cy="659.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="664.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="dl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="706.0" r="13" fill="url(#gPN_dl)" filter="url(#fP_dl)"/><ellipse cx="246.4" cy="701.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="709.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#2a1045" opacity="0.88">PN</text></g>
+<g class="conta-cruz" data-terco="dl" data-oracao="cruz" onclick="clicarCruz(this)" style="cursor:pointer" filter="url(#fS_dl)"><line x1="250" y1="753.0" x2="250" y2="809.0" stroke="url(#gCruz_dl)" stroke-width="8" stroke-linecap="round"/><line x1="226.0" y1="770.0" x2="274.0" y2="770.0" stroke="url(#gCruz_dl)" stroke-width="8" stroke-linecap="round"/><circle cx="250"       cy="753.0"     r="5"   fill="url(#gCruz_dl)"/><circle cx="250"       cy="809.0"  r="5"   fill="url(#gCruz_dl)"/><circle cx="226.0" cy="770.0" r="5"   fill="url(#gCruz_dl)"/><circle cx="274.0" cy="770.0" r="5"   fill="url(#gCruz_dl)"/><ellipse cx="250" cy="780.0" rx="5" ry="11" fill="#c8a030" opacity="0.28"/></g><style>[data-terco="dl"].conta circle,[data-terco="dl"].conta polygon{transition:opacity .3s}[data-terco="dl"].conta:hover circle,[data-terco="dl"].conta:hover polygon{opacity:.72}[data-terco="dl"].conta.rezada circle,[data-terco="dl"].conta.rezada polygon{opacity:.16!important}[data-terco="dl"].conta.rezada ellipse{opacity:.04!important}[data-terco="dl"].conta.rezada text{opacity:.1!important}</style></svg>
+        </div>
+        
+        <button class="btn-r" onclick="reiniciar('dl')">↺ Reiniciar</button>
+      </div>
+      <div class="pm">
+        <h3>✝ Os Cinco Mistérios</h3>
+        <ul class="lm-list">
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-dl">1</span><div class="mi"><h4>A Agonia de Jesus no Horto</h4><p class="rf">Marcos 14,32-42 — Jesus ora no Getsêmani e aceita a vontade do Pai</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-dl">2</span><div class="mi"><h4>A Flagelação de Jesus</h4><p class="rf">João 19,1 — Pilatos manda flagelar Jesus cruelmente</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-dl">3</span><div class="mi"><h4>A Coroação de Espinhos</h4><p class="rf">Mateus 27,29 — Os soldados coroam Jesus com espinhos</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-dl">4</span><div class="mi"><h4>Jesus carrega a Cruz ao Calvário</h4><p class="rf">Lucas 23,26-32 — Jesus carrega a cruz até o Calvário</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-dl">5</span><div class="mi"><h4>A Crucificação e Morte de Jesus</h4><p class="rf">Lucas 23,33-47 — Jesus é crucificado e morre na Cruz por nós</p></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="po">
+      <h3>📖 Orações</h3>
+      <div class="ot">
+        <button class="bt ativo" onclick="mostrarOracao(this,'dl-sc')">Sinal da Cruz</button>
+        <button class="bt" onclick="mostrarOracao(this,'dl-cr')">Credo</button>
+        <button class="bt" onclick="mostrarOracao(this,'dl-pn')">Pai-Nosso</button>
+        <button class="bt" onclick="mostrarOracao(this,'dl-am')">Ave-Maria</button>
+        <button class="bt" onclick="mostrarOracao(this,'dl-gl')">Glória</button>
+        <button class="bt" onclick="mostrarOracao(this,'dl-mj')">Ó meu Jesus</button>
+      </div>
+      <div class="to visivel" id="dl-sc"><h4>✝ Sinal da Cruz</h4><p>Em nome do Pai, e do Filho, e do Espírito Santo. Amém.</p></div>
+      <div class="to" id="dl-cr"><h4>✝ Credo Apostólico</h4><p>Creio em Deus Pai todo-poderoso, Criador do céu e da terra; e em Jesus Cristo, seu único Filho, Nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos; foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos céus; está sentado à direita de Deus Pai todo-poderoso; donde há de vir a julgar os vivos e os mortos.</p><p>Creio no Espírito Santo; na santa Igreja Católica; na comunhão dos santos; na remissão dos pecados; na ressurreição da carne; na vida eterna. Amém.</p></div>
+      <div class="to" id="dl-pn"><h4>✝ Pai-Nosso</h4><p>Pai-Nosso que estais nos céus, santificado seja o vosso nome, venha a nós o vosso reino, seja feita a vossa vontade, assim na terra como no céu.</p><p>O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.</p></div>
+      <div class="to" id="dl-am"><h4>✝ Ave-Maria</h4><p>Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.</p><p>Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém.</p></div>
+      <div class="to" id="dl-gl"><h4>✝ Glória ao Pai</h4><p>Glória ao Pai, ao Filho e ao Espírito Santo, assim como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.</p></div>
+      <div class="to" id="dl-mj"><h4>✝ Ó meu Jesus</h4><p>Ó meu Jesus, perdoai-nos e livrai-nos do fogo do Inferno; levai as almas todas para o Céu, especialmente as que mais precisarem da vossa misericórdia. Amém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LUMINOSOS — Azul ═══ -->
+<section class="secao" id="sec-lm">
+  <div class="sh hd-lm"><div class="emb">☀</div><h2>Mistérios Luminosos</h2><p class="dias">Quinta-feira</p></div>
+  <div class="sc">
+    <div class="sl">
+      <div class="pt">
+        <h3>📿 Terço</h3>
+        <div class="tw">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 831" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block"><defs>
+  <radialGradient id="gAM_lm" cx="35%" cy="28%" r="65%">
+    <stop offset="0%"   stop-color="#d0e4fa"/>
+    <stop offset="30%"  stop-color="#6090d8"/>
+    <stop offset="65%"  stop-color="#2055a0"/>
+    <stop offset="100%" stop-color="#0a1e45"/>
+  </radialGradient>
+  <radialGradient id="gPN_lm" cx="32%" cy="25%" r="68%">
+    <stop offset="0%"   stop-color="#d0e4fa"/>
+    <stop offset="25%"  stop-color="#6090d8"/>
+    <stop offset="60%"  stop-color="#3060b0"/>
+    <stop offset="100%" stop-color="#0a1e45"/>
+  </radialGradient>
+  <linearGradient id="gFio_lm" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%"   stop-color="#c8a030" stop-opacity="0.7"/>
+    <stop offset="50%"  stop-color="#f8ee98"   stop-opacity="1"/>
+    <stop offset="100%" stop-color="#c8a030" stop-opacity="0.7"/>
+  </linearGradient>
+  <linearGradient id="gCruz_lm" x1="10%" y1="0%" x2="90%" y2="100%">
+    <stop offset="0%"   stop-color="#f8e898"/>
+    <stop offset="40%"  stop-color="#d0a030"/>
+    <stop offset="100%" stop-color="#7a5010"/>
+  </linearGradient>
+  <radialGradient id="gGlow_lm" cx="50%" cy="50%" r="50%">
+    <stop offset="50%"  stop-color="#d0e4fa" stop-opacity="0"/>
+    <stop offset="82%"  stop-color="#6090d8"  stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#d0e4fa" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="fS_lm" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0.5" dy="1.5" stdDeviation="2" flood-color="#0a1e45" flood-opacity="0.4"/>
+  </filter>
+  <filter id="fP_lm" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#6090d8" flood-opacity="0.55"/>
+  </filter>
+</defs><circle cx="250" cy="250" r="220" fill="url(#gGlow_lm)"/><circle cx="250" cy="250" r="205" fill="none" stroke="url(#gFio_lm)" stroke-width="2.5"/><line x1="250" y1="455.0" x2="250" y2="479.0" stroke="url(#gFio_lm)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="505.0" x2="250" y2="529.0" stroke="url(#gFio_lm)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="555.0" x2="250" y2="579.0" stroke="url(#gFio_lm)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="593.0" x2="250" y2="617.0" stroke="url(#gFio_lm)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="631.0" x2="250" y2="655.0" stroke="url(#gFio_lm)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="669.0" x2="250" y2="693.0" stroke="url(#gFio_lm)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="719.0" x2="250" y2="753.0" stroke="url(#gFio_lm)" stroke-width="2.5" stroke-linecap="round"/><g class="conta" data-terco="lm" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250.0" cy="455.0" r="13" fill="url(#gPN_lm)" filter="url(#fP_lm)"/><ellipse cx="246.4" cy="450.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250.0" y="458.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.85">1</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="226.6" cy="453.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="224.7" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="226.6" y="455.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="203.6" cy="449.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="201.6" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="203.6" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="181.1" cy="443.1" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="179.1" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="181.1" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="159.5" cy="434.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="157.6" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="159.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="139.2" cy="422.5" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="137.2" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="139.2" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="120.2" cy="408.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="118.3" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="120.2" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="103.0" cy="392.9" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="101.0" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="103.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="87.7" cy="375.2" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="85.7" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="87.7" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="74.4" cy="355.9" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="72.5" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="74.4" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="63.5" cy="335.2" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="61.6" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="63.5" y="337.2" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="lm" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="55.0" cy="313.3" r="13" fill="url(#gPN_lm)" filter="url(#fP_lm)"/><ellipse cx="51.4" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="55.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.85">2</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="49.1" cy="290.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="47.1" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="49.1" y="292.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.8" cy="267.5" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="43.8" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.8" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.1" cy="244.1" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="43.1" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.1" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="47.1" cy="220.8" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="45.1" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="47.1" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="51.7" cy="197.9" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="49.8" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="51.7" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="59.0" cy="175.6" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="57.0" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="59.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="68.7" cy="154.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="66.7" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="68.7" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="80.8" cy="134.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="78.8" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="80.8" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="95.1" cy="115.8" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="93.1" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="95.1" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="111.4" cy="99.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="109.4" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="111.4" y="101.0" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="lm" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="129.5" cy="84.2" r="13" fill="url(#gPN_lm)" filter="url(#fP_lm)"/><ellipse cx="125.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="129.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.85">3</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="149.2" cy="71.5" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="147.2" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="149.2" y="73.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="170.2" cy="61.2" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="168.2" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="170.2" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="192.2" cy="53.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="190.3" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="192.2" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="215.0" cy="48.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="213.1" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="215.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="238.3" cy="45.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="236.3" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="238.3" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="261.7" cy="45.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="259.7" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="261.7" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="285.0" cy="48.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="283.0" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="285.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="307.8" cy="53.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="305.8" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="307.8" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="329.8" cy="61.2" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="327.8" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="329.8" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="350.8" cy="71.5" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="348.8" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="350.8" y="73.5" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="lm" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="370.5" cy="84.2" r="13" fill="url(#gPN_lm)" filter="url(#fP_lm)"/><ellipse cx="366.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="370.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.85">4</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="388.6" cy="99.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="386.7" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="388.6" y="101.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="404.9" cy="115.8" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="403.0" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="404.9" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="419.2" cy="134.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="417.3" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="419.2" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="431.3" cy="154.3" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="429.3" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="431.3" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="441.0" cy="175.6" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="439.1" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="441.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="448.3" cy="197.9" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="446.3" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="448.3" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="452.9" cy="220.8" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="451.0" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="452.9" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.9" cy="244.1" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="453.0" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.9" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.2" cy="267.5" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="452.3" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.2" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="450.9" cy="290.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="449.0" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="450.9" y="292.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="lm" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="445.0" cy="313.3" r="13" fill="url(#gPN_lm)" filter="url(#fP_lm)"/><ellipse cx="441.3" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="445.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.85">5</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="436.5" cy="335.2" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="434.5" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="436.5" y="337.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="425.6" cy="355.9" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="423.6" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="425.6" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="412.3" cy="375.2" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="410.4" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="412.3" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="397.0" cy="392.9" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="395.1" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="397.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="379.8" cy="408.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="377.8" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="379.8" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="360.8" cy="422.5" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="358.9" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="360.8" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="340.5" cy="434.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="338.5" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="340.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="318.9" cy="443.1" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="316.9" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="318.9" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="296.4" cy="449.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="294.5" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="296.4" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="273.4" cy="453.7" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="271.4" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="273.4" y="455.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="lm" data-oracao="salve-rainha" onclick="clicarConta(this)" style="cursor:pointer"><polygon points="250.0,476.0 253.1,484.6 261.3,480.7 257.4,488.9 266.0,492.0 257.4,495.1 261.3,503.3 253.1,499.4 250.0,508.0 246.9,499.4 238.7,503.3 242.6,495.1 234.0,492.0 242.6,488.9 238.7,480.7 246.9,484.6" fill="url(#gPN_lm)" filter="url(#fP_lm)" stroke="#c8a030" stroke-width="0.8"/><ellipse cx="247.0" cy="488.0" rx="4" ry="2.2" fill="white" opacity="0.48"/><text x="250" y="494.8" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.88">SR</text></g>
+<g class="conta" data-terco="lm" data-oracao="gloria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="542.0" r="13" fill="url(#gPN_lm)" filter="url(#fP_lm)"/><ellipse cx="246.4" cy="537.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="545.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.88">GL</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="586.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="248.0" cy="583.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="588.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="624.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="248.0" cy="621.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="626.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="lm" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="662.0" r="7" fill="url(#gAM_lm)" filter="url(#fS_lm)"/><ellipse cx="248.0" cy="659.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="664.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="lm" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="706.0" r="13" fill="url(#gPN_lm)" filter="url(#fP_lm)"/><ellipse cx="246.4" cy="701.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="709.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#0a1e45" opacity="0.88">PN</text></g>
+<g class="conta-cruz" data-terco="lm" data-oracao="cruz" onclick="clicarCruz(this)" style="cursor:pointer" filter="url(#fS_lm)"><line x1="250" y1="753.0" x2="250" y2="809.0" stroke="url(#gCruz_lm)" stroke-width="8" stroke-linecap="round"/><line x1="226.0" y1="770.0" x2="274.0" y2="770.0" stroke="url(#gCruz_lm)" stroke-width="8" stroke-linecap="round"/><circle cx="250"       cy="753.0"     r="5"   fill="url(#gCruz_lm)"/><circle cx="250"       cy="809.0"  r="5"   fill="url(#gCruz_lm)"/><circle cx="226.0" cy="770.0" r="5"   fill="url(#gCruz_lm)"/><circle cx="274.0" cy="770.0" r="5"   fill="url(#gCruz_lm)"/><ellipse cx="250" cy="780.0" rx="5" ry="11" fill="#c8a030" opacity="0.28"/></g><style>[data-terco="lm"].conta circle,[data-terco="lm"].conta polygon{transition:opacity .3s}[data-terco="lm"].conta:hover circle,[data-terco="lm"].conta:hover polygon{opacity:.72}[data-terco="lm"].conta.rezada circle,[data-terco="lm"].conta.rezada polygon{opacity:.16!important}[data-terco="lm"].conta.rezada ellipse{opacity:.04!important}[data-terco="lm"].conta.rezada text{opacity:.1!important}</style></svg>
+        </div>
+        
+        <button class="btn-r" onclick="reiniciar('lm')">↺ Reiniciar</button>
+      </div>
+      <div class="pm">
+        <h3>☀ Os Cinco Mistérios</h3>
+        <ul class="lm-list">
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-lm">1</span><div class="mi"><h4>O Batismo de Jesus no Jordão</h4><p class="rf">Mateus 3,13-17 — O Pai declara Jesus seu Filho amado</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-lm">2</span><div class="mi"><h4>As Bodas de Caná</h4><p class="rf">João 2,1-12 — A pedido de Maria, Jesus transforma água em vinho</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-lm">3</span><div class="mi"><h4>O Anúncio do Reino de Deus</h4><p class="rf">Marcos 1,14-15 — Jesus proclama o Reino e chama à conversão</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-lm">4</span><div class="mi"><h4>A Transfiguração no Tabor</h4><p class="rf">Lucas 9,28-36 — Jesus se transfigura diante de Pedro, Tiago e João</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-lm">5</span><div class="mi"><h4>A Instituição da Eucaristia</h4><p class="rf">Mateus 26,26-29 — Na Última Ceia, Jesus institui a Eucaristia</p></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="po">
+      <h3>📖 Orações</h3>
+      <div class="ot">
+        <button class="bt ativo" onclick="mostrarOracao(this,'lm-sc')">Sinal da Cruz</button>
+        <button class="bt" onclick="mostrarOracao(this,'lm-cr')">Credo</button>
+        <button class="bt" onclick="mostrarOracao(this,'lm-pn')">Pai-Nosso</button>
+        <button class="bt" onclick="mostrarOracao(this,'lm-am')">Ave-Maria</button>
+        <button class="bt" onclick="mostrarOracao(this,'lm-gl')">Glória</button>
+        <button class="bt" onclick="mostrarOracao(this,'lm-mj')">Ó meu Jesus</button>
+      </div>
+      <div class="to visivel" id="lm-sc"><h4>✝ Sinal da Cruz</h4><p>Em nome do Pai, e do Filho, e do Espírito Santo. Amém.</p></div>
+      <div class="to" id="lm-cr"><h4>✝ Credo Apostólico</h4><p>Creio em Deus Pai todo-poderoso, Criador do céu e da terra; e em Jesus Cristo, seu único Filho, Nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos; foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos céus; está sentado à direita de Deus Pai todo-poderoso; donde há de vir a julgar os vivos e os mortos.</p><p>Creio no Espírito Santo; na santa Igreja Católica; na comunhão dos santos; na remissão dos pecados; na ressurreição da carne; na vida eterna. Amém.</p></div>
+      <div class="to" id="lm-pn"><h4>✝ Pai-Nosso</h4><p>Pai-Nosso que estais nos céus, santificado seja o vosso nome, venha a nós o vosso reino, seja feita a vossa vontade, assim na terra como no céu.</p><p>O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.</p></div>
+      <div class="to" id="lm-am"><h4>✝ Ave-Maria</h4><p>Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.</p><p>Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém.</p></div>
+      <div class="to" id="lm-gl"><h4>✝ Glória ao Pai</h4><p>Glória ao Pai, ao Filho e ao Espírito Santo, assim como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.</p></div>
+      <div class="to" id="lm-mj"><h4>✝ Ó meu Jesus</h4><p>Ó meu Jesus, perdoai-nos e livrai-nos do fogo do Inferno; levai as almas todas para o Céu, especialmente as que mais precisarem da vossa misericórdia. Amém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GLORIOSOS — Vermelho ═══ -->
+<section class="secao" id="sec-gl">
+  <div class="sh hd-gl"><div class="emb">👑</div><h2>Mistérios Gloriosos</h2><p class="dias">Quarta-feira e Domingo</p></div>
+  <div class="sc">
+    <div class="sl">
+      <div class="pt">
+        <h3>📿 Terço</h3>
+        <div class="tw">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 831" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block"><defs>
+  <radialGradient id="gAM_gl" cx="35%" cy="28%" r="65%">
+    <stop offset="0%"   stop-color="#fce0e4"/>
+    <stop offset="30%"  stop-color="#e07080"/>
+    <stop offset="65%"  stop-color="#a82030"/>
+    <stop offset="100%" stop-color="#450a10"/>
+  </radialGradient>
+  <radialGradient id="gPN_gl" cx="32%" cy="25%" r="68%">
+    <stop offset="0%"   stop-color="#fce0e4"/>
+    <stop offset="25%"  stop-color="#e07080"/>
+    <stop offset="60%"  stop-color="#c03040"/>
+    <stop offset="100%" stop-color="#450a10"/>
+  </radialGradient>
+  <linearGradient id="gFio_gl" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%"   stop-color="#c8a030" stop-opacity="0.7"/>
+    <stop offset="50%"  stop-color="#f8ee98"   stop-opacity="1"/>
+    <stop offset="100%" stop-color="#c8a030" stop-opacity="0.7"/>
+  </linearGradient>
+  <linearGradient id="gCruz_gl" x1="10%" y1="0%" x2="90%" y2="100%">
+    <stop offset="0%"   stop-color="#f8e898"/>
+    <stop offset="40%"  stop-color="#d0a030"/>
+    <stop offset="100%" stop-color="#7a5010"/>
+  </linearGradient>
+  <radialGradient id="gGlow_gl" cx="50%" cy="50%" r="50%">
+    <stop offset="50%"  stop-color="#fce0e4" stop-opacity="0"/>
+    <stop offset="82%"  stop-color="#e07080"  stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#fce0e4" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="fS_gl" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0.5" dy="1.5" stdDeviation="2" flood-color="#450a10" flood-opacity="0.4"/>
+  </filter>
+  <filter id="fP_gl" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#e07080" flood-opacity="0.55"/>
+  </filter>
+</defs><circle cx="250" cy="250" r="220" fill="url(#gGlow_gl)"/><circle cx="250" cy="250" r="205" fill="none" stroke="url(#gFio_gl)" stroke-width="2.5"/><line x1="250" y1="455.0" x2="250" y2="479.0" stroke="url(#gFio_gl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="505.0" x2="250" y2="529.0" stroke="url(#gFio_gl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="555.0" x2="250" y2="579.0" stroke="url(#gFio_gl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="593.0" x2="250" y2="617.0" stroke="url(#gFio_gl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="631.0" x2="250" y2="655.0" stroke="url(#gFio_gl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="669.0" x2="250" y2="693.0" stroke="url(#gFio_gl)" stroke-width="2.5" stroke-linecap="round"/><line x1="250" y1="719.0" x2="250" y2="753.0" stroke="url(#gFio_gl)" stroke-width="2.5" stroke-linecap="round"/><g class="conta" data-terco="gl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250.0" cy="455.0" r="13" fill="url(#gPN_gl)" filter="url(#fP_gl)"/><ellipse cx="246.4" cy="450.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250.0" y="458.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.85">1</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="226.6" cy="453.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="224.7" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="226.6" y="455.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="203.6" cy="449.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="201.6" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="203.6" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="181.1" cy="443.1" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="179.1" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="181.1" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="159.5" cy="434.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="157.6" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="159.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="139.2" cy="422.5" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="137.2" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="139.2" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="120.2" cy="408.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="118.3" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="120.2" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="103.0" cy="392.9" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="101.0" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="103.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="87.7" cy="375.2" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="85.7" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="87.7" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="74.4" cy="355.9" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="72.5" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="74.4" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="63.5" cy="335.2" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="61.6" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="63.5" y="337.2" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="55.0" cy="313.3" r="13" fill="url(#gPN_gl)" filter="url(#fP_gl)"/><ellipse cx="51.4" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="55.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.85">2</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="49.1" cy="290.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="47.1" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="49.1" y="292.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.8" cy="267.5" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="43.8" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.8" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="45.1" cy="244.1" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="43.1" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="45.1" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="47.1" cy="220.8" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="45.1" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="47.1" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="51.7" cy="197.9" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="49.8" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="51.7" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="59.0" cy="175.6" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="57.0" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="59.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="68.7" cy="154.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="66.7" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="68.7" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="80.8" cy="134.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="78.8" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="80.8" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="95.1" cy="115.8" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="93.1" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="95.1" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="111.4" cy="99.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="109.4" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="111.4" y="101.0" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="129.5" cy="84.2" r="13" fill="url(#gPN_gl)" filter="url(#fP_gl)"/><ellipse cx="125.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="129.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.85">3</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="149.2" cy="71.5" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="147.2" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="149.2" y="73.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="170.2" cy="61.2" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="168.2" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="170.2" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="192.2" cy="53.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="190.3" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="192.2" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="215.0" cy="48.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="213.1" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="215.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="238.3" cy="45.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="236.3" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="238.3" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="261.7" cy="45.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="259.7" cy="43.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="261.7" y="47.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="285.0" cy="48.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="283.0" cy="45.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="285.0" y="50.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="307.8" cy="53.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="305.8" cy="51.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="307.8" y="55.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="329.8" cy="61.2" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="327.8" cy="58.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="329.8" y="63.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="350.8" cy="71.5" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="348.8" cy="69.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="350.8" y="73.5" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="370.5" cy="84.2" r="13" fill="url(#gPN_gl)" filter="url(#fP_gl)"/><ellipse cx="366.9" cy="80.0" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="370.5" y="87.2" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.85">4</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="388.6" cy="99.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="386.7" cy="96.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="388.6" y="101.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="404.9" cy="115.8" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="403.0" cy="113.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="404.9" y="117.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="419.2" cy="134.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="417.3" cy="132.0" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="419.2" y="136.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="431.3" cy="154.3" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="429.3" cy="152.1" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="431.3" y="156.3" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="441.0" cy="175.6" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="439.1" cy="173.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="441.0" y="177.6" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="448.3" cy="197.9" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="446.3" cy="195.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="448.3" y="199.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="452.9" cy="220.8" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="451.0" cy="218.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="452.9" y="222.8" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.9" cy="244.1" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="453.0" cy="241.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.9" y="246.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="454.2" cy="267.5" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="452.3" cy="265.3" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="454.2" y="269.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="450.9" cy="290.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="449.0" cy="288.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="450.9" y="292.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="445.0" cy="313.3" r="13" fill="url(#gPN_gl)" filter="url(#fP_gl)"/><ellipse cx="441.3" cy="309.2" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="445.0" y="316.3" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.85">5</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="436.5" cy="335.2" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="434.5" cy="332.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="436.5" y="337.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">1</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="425.6" cy="355.9" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="423.6" cy="353.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="425.6" y="357.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">2</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="412.3" cy="375.2" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="410.4" cy="372.9" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="412.3" y="377.2" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">3</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="397.0" cy="392.9" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="395.1" cy="390.6" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="397.0" y="394.9" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">4</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="379.8" cy="408.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="377.8" cy="406.5" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="379.8" y="410.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">5</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="360.8" cy="422.5" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="358.9" cy="420.2" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="360.8" y="424.5" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">6</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="340.5" cy="434.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="338.5" cy="431.7" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="340.5" y="436.0" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">7</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="318.9" cy="443.1" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="316.9" cy="440.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="318.9" y="445.1" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">8</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="296.4" cy="449.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="294.5" cy="447.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="296.4" y="451.7" text-anchor="middle" font-size="6" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">9</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria-10" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="273.4" cy="453.7" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="271.4" cy="451.4" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="273.4" y="455.7" text-anchor="middle" font-size="5" font-family="Lora,serif" font-weight="600" fill="white" opacity="0.9">10✦</text></g>
+<g class="conta" data-terco="gl" data-oracao="salve-rainha" onclick="clicarConta(this)" style="cursor:pointer"><polygon points="250.0,476.0 253.1,484.6 261.3,480.7 257.4,488.9 266.0,492.0 257.4,495.1 261.3,503.3 253.1,499.4 250.0,508.0 246.9,499.4 238.7,503.3 242.6,495.1 234.0,492.0 242.6,488.9 238.7,480.7 246.9,484.6" fill="url(#gPN_gl)" filter="url(#fP_gl)" stroke="#c8a030" stroke-width="0.8"/><ellipse cx="247.0" cy="488.0" rx="4" ry="2.2" fill="white" opacity="0.48"/><text x="250" y="494.8" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.88">SR</text></g>
+<g class="conta" data-terco="gl" data-oracao="gloria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="542.0" r="13" fill="url(#gPN_gl)" filter="url(#fP_gl)"/><ellipse cx="246.4" cy="537.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="545.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.88">GL</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="586.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="248.0" cy="583.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="588.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="624.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="248.0" cy="621.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="626.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="gl" data-oracao="ave-maria" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="662.0" r="7" fill="url(#gAM_gl)" filter="url(#fS_gl)"/><ellipse cx="248.0" cy="659.8" rx="2.4" ry="1.3" fill="white" opacity="0.48"/><text x="250" y="664.0" text-anchor="middle" font-size="6.5" font-family="Cinzel,serif" font-weight="700" fill="white" opacity="0.9">AM</text></g>
+<g class="conta" data-terco="gl" data-oracao="pai-nosso" onclick="clicarConta(this)" style="cursor:pointer"><circle cx="250" cy="706.0" r="13" fill="url(#gPN_gl)" filter="url(#fP_gl)"/><ellipse cx="246.4" cy="701.8" rx="4.7" ry="2.7" fill="white" opacity="0.55"/><text x="250" y="709.0" text-anchor="middle" font-size="8" font-family="Cinzel,serif" font-weight="700" fill="#450a10" opacity="0.88">PN</text></g>
+<g class="conta-cruz" data-terco="gl" data-oracao="cruz" onclick="clicarCruz(this)" style="cursor:pointer" filter="url(#fS_gl)"><line x1="250" y1="753.0" x2="250" y2="809.0" stroke="url(#gCruz_gl)" stroke-width="8" stroke-linecap="round"/><line x1="226.0" y1="770.0" x2="274.0" y2="770.0" stroke="url(#gCruz_gl)" stroke-width="8" stroke-linecap="round"/><circle cx="250"       cy="753.0"     r="5"   fill="url(#gCruz_gl)"/><circle cx="250"       cy="809.0"  r="5"   fill="url(#gCruz_gl)"/><circle cx="226.0" cy="770.0" r="5"   fill="url(#gCruz_gl)"/><circle cx="274.0" cy="770.0" r="5"   fill="url(#gCruz_gl)"/><ellipse cx="250" cy="780.0" rx="5" ry="11" fill="#c8a030" opacity="0.28"/></g><style>[data-terco="gl"].conta circle,[data-terco="gl"].conta polygon{transition:opacity .3s}[data-terco="gl"].conta:hover circle,[data-terco="gl"].conta:hover polygon{opacity:.72}[data-terco="gl"].conta.rezada circle,[data-terco="gl"].conta.rezada polygon{opacity:.16!important}[data-terco="gl"].conta.rezada ellipse{opacity:.04!important}[data-terco="gl"].conta.rezada text{opacity:.1!important}</style></svg>
+        </div>
+        
+        <button class="btn-r" onclick="reiniciar('gl')">↺ Reiniciar</button>
+      </div>
+      <div class="pm">
+        <h3>👑 Os Cinco Mistérios</h3>
+        <ul class="lm-list">
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gl">1</span><div class="mi"><h4>A Ressurreição de Jesus</h4><p class="rf">Marcos 16,1-8 — Jesus ressuscita ao terceiro dia, vencendo a morte</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gl">2</span><div class="mi"><h4>A Ascensão de Jesus ao Céu</h4><p class="rf">Atos 1,3-11 — Jesus sobe ao Céu quarenta dias após a Ressurreição</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gl">3</span><div class="mi"><h4>A Vinda do Espírito Santo</h4><p class="rf">Atos 2,1-14 — O Espírito Santo desce sobre Maria e os apóstolos</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gl">4</span><div class="mi"><h4>A Assunção de Maria ao Céu</h4><p class="rf">1 Coríntios 15,20-23 — Maria é elevada ao Céu em corpo e alma</p></div></li>
+          <li class="im" onclick="ativarMist(this)"><span class="nm nm-gl">5</span><div class="mi"><h4>A Coroação de Maria como Rainha</h4><p class="rf">Apocalipse 12,1-6 — Maria é coroada Rainha do Céu e da Terra</p></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="po">
+      <h3>📖 Orações</h3>
+      <div class="ot">
+        <button class="bt ativo" onclick="mostrarOracao(this,'gl-sc')">Sinal da Cruz</button>
+        <button class="bt" onclick="mostrarOracao(this,'gl-cr')">Credo</button>
+        <button class="bt" onclick="mostrarOracao(this,'gl-pn')">Pai-Nosso</button>
+        <button class="bt" onclick="mostrarOracao(this,'gl-am')">Ave-Maria</button>
+        <button class="bt" onclick="mostrarOracao(this,'gl-gl')">Glória</button>
+        <button class="bt" onclick="mostrarOracao(this,'gl-mj')">Ó meu Jesus</button>
+      </div>
+      <div class="to visivel" id="gl-sc"><h4>✝ Sinal da Cruz</h4><p>Em nome do Pai, e do Filho, e do Espírito Santo. Amém.</p></div>
+      <div class="to" id="gl-cr"><h4>✝ Credo Apostólico</h4><p>Creio em Deus Pai todo-poderoso, Criador do céu e da terra; e em Jesus Cristo, seu único Filho, Nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos; foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos céus; está sentado à direita de Deus Pai todo-poderoso; donde há de vir a julgar os vivos e os mortos.</p><p>Creio no Espírito Santo; na santa Igreja Católica; na comunhão dos santos; na remissão dos pecados; na ressurreição da carne; na vida eterna. Amém.</p></div>
+      <div class="to" id="gl-pn"><h4>✝ Pai-Nosso</h4><p>Pai-Nosso que estais nos céus, santificado seja o vosso nome, venha a nós o vosso reino, seja feita a vossa vontade, assim na terra como no céu.</p><p>O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.</p></div>
+      <div class="to" id="gl-am"><h4>✝ Ave-Maria</h4><p>Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.</p><p>Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém.</p></div>
+      <div class="to" id="gl-gl"><h4>✝ Glória ao Pai</h4><p>Glória ao Pai, ao Filho e ao Espírito Santo, assim como era no princípio, agora e sempre, por todos os séculos dos séculos. Amém.</p></div>
+      <div class="to" id="gl-mj"><h4>✝ Ó meu Jesus</h4><p>Ó meu Jesus, perdoai-nos e livrai-nos do fogo do Inferno; levai as almas todas para o Céu, especialmente as que mais precisarem da vossa misericórdia. Amém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SALVE RAINHA -->
+<div class="salve">
+  <p class="ot-titulo">✦ Após os Cinco Mistérios</p>
+  <h3>Salve Rainha</h3>
+  <p>Salve, Rainha, Mãe de Misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva; a vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei; e depois deste desterro, mostrai-nos Jesus, o bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce Virgem Maria! Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém.</p>
+  <p class="ot-titulo">✦ Agradecimento Final</p>
+  <h3>Oração de Agradecimento</h3>
+  <p>Obrigado, Senhor, pelo dom de rezar este Santo Rosário em honra de Nossa Senhora. Que esta oração nos leve a contemplar os mistérios de vossa vida, morte e ressurreição, para que, perseverando no amor, alcancemos a vida eterna. Amém.</p>
+</div>
+
+</main>
+
+<footer class="rodape">
+  <p>O Santo Rosário de Nossa Senhora</p>
+  <p style="margin-top:.35rem">Ave Maria, cheia de graça — ora pro nobis</p>
+</footer>
+
+<script>
+var vozAtual = 'homem';
+var audioAtual = null;
+
+function selecionarVoz(voz, btn) {
+  vozAtual = voz;
+  var n = {homem:'Homem',mulher:'Mulher'};
+  document.querySelectorAll('.btn-voz').forEach(function(b){b.classList.remove('ativo');});
+  btn.classList.add('ativo');
+  document.getElementById('voz-lbl').textContent = '🔊 Voz: ' + n[voz];
+}
+
+// Nomes amigáveis das orações para o indicador
+var nomesOracao = {
+  'pai-nosso':    'Pai-Nosso',
+  'ave-maria':    'Ave-Maria',
+  'ave-maria-10': 'Ave-Maria + Ó meu Jesus',
+  'gloria':       'Glória ao Pai',
+  'sinal-cruz':   'Sinal da Cruz',
+  'credo':        'Credo',
+  'salve-rainha': 'Salve Rainha',
+  'o_meu_jesus':  'Ó meu Jesus'
+};
+
+// Toca um arquivo de áudio e retorna o objeto Audio
+function _tocarAudio(nomeOracao, callback) {
+  var f = nomeOracao.replace(/-/g,'_');
+  var audio = new Audio('audio/' + f + '_' + vozAtual + '.mp3');
+  if (callback) {
+    audio.addEventListener('ended', callback);
+  }
+  audio.addEventListener('error', function() {
+    document.getElementById('ind-audio').classList.remove('tocando');
+  });
+  audio.play().catch(function() {
+    document.getElementById('ind-audio').classList.remove('tocando');
+  });
+  return audio;
+}
+
+// Toca uma única oração
+function tocarOracao(oracao) {
+  var ind = document.getElementById('ind-audio');
+  var lbl = document.getElementById('lbl-tocando');
+  if (audioAtual) { audioAtual.pause(); audioAtual.currentTime = 0; }
+  ind.classList.add('tocando');
+  lbl.textContent = 'Tocando: ' + (nomesOracao[oracao] || oracao);
+  audioAtual = _tocarAudio(oracao, function() {
+    ind.classList.remove('tocando');
+  });
+}
+
+// Toca Sinal da Cruz e, ao terminar, toca o Credo automaticamente
+function tocarCruz() {
+  var ind = document.getElementById('ind-audio');
+  var lbl = document.getElementById('lbl-tocando');
+  if (audioAtual) { audioAtual.pause(); audioAtual.currentTime = 0; }
+  ind.classList.add('tocando');
+  lbl.textContent = 'Tocando: Credo…';
+  // Cruz toca apenas o Credo
+  audioAtual = _tocarAudio('credo', function() {
+    ind.classList.remove('tocando');
+  });
+}
+
+// Clique em conta normal
+
+// Toca Glória ao Pai e, ao terminar, toca o Pai-Nosso automaticamente
+function tocarGloriaPaiNosso() {
+  var ind = document.getElementById('ind-audio');
+  var lbl = document.getElementById('lbl-tocando');
+  if (audioAtual) { audioAtual.pause(); audioAtual.currentTime = 0; }
+  ind.classList.add('tocando');
+  lbl.textContent = 'Tocando: Glória ao Pai…';
+  audioAtual = _tocarAudio('gloria', function() {
+    lbl.textContent = 'Tocando: Pai-Nosso…';
+    audioAtual = _tocarAudio('pai_nosso', function() {
+      ind.classList.remove('tocando');
+    });
+  });
+}
+function clicarConta(el) {
+  var oracao = el.getAttribute('data-oracao');
+  el.classList.add('rezada');
+
+  // 10ª Ave-Maria de cada dezena: toca Ave-Maria e depois "Ó meu Jesus" automaticamente
+  if (oracao === 'ave-maria-10') {
+    var ind = document.getElementById('ind-audio');
+    var lbl = document.getElementById('lbl-tocando');
+    if (audioAtual) { audioAtual.pause(); audioAtual.currentTime = 0; }
+    ind.classList.add('tocando');
+    lbl.textContent = 'Tocando: Ave-Maria…';
+    audioAtual = _tocarAudio('ave_maria', function() {
+      lbl.textContent = 'Tocando: Ó meu Jesus…';
+      audioAtual = _tocarAudio('o_meu_jesus', function() {
+        ind.classList.remove('tocando');
+      });
+    });
+  } else {
+    tocarOracao(oracao);
+  }
+}
+
+// Clique na cruz — toca Sinal da Cruz + Credo em sequência
+function clicarCruz(el) {
+  // Marca visualmente (escurece a cruz via classe no grupo pai)
+  el.style.opacity = '0.45';
+  tocarCruz();
+}
+
+function reiniciar(t) {
+  // Restaura todas as contas rezadas
+  document.querySelectorAll('[data-terco="'+t+'"]').forEach(function(c){
+    c.classList.remove('rezada');
+  });
+  // Restaura a opacidade da cruz
+  var cruz = document.querySelector('.conta-cruz[data-terco="'+t+'"]');
+  if (cruz) cruz.style.opacity = '1';
+}
+
+function mostrarSecao(id, btn) {
+  document.querySelectorAll('.secao').forEach(function(s){s.classList.remove('visivel');});
+  document.getElementById('sec-'+id).classList.add('visivel');
+  document.querySelectorAll('.btn-nav').forEach(function(b){b.classList.remove('ativo');});
+  btn.classList.add('ativo');
+  document.getElementById('sec-'+id).scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function mostrarOracao(btn, id) {
+  var p = btn.closest('.po');
+  p.querySelectorAll('.to').forEach(function(t){t.classList.remove('visivel');});
+  p.querySelectorAll('.bt').forEach(function(b){b.classList.remove('ativo');});
+  document.getElementById(id).classList.add('visivel');
+  btn.classList.add('ativo');
+}
+
+function ativarMist(el) {
+  el.closest('.lm-list').querySelectorAll('.im').forEach(function(i){i.classList.remove('ativo');});
+  el.classList.add('ativo');
+}
+</script>
+</body>
+</html>
